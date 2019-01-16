@@ -23,7 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
-    "js-template": "~0.1.4"
+    "js-template": "^0.1.4"
   },
   "devDependencies": {
     "gulp": "~3.9.1",

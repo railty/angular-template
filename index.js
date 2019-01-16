@@ -106,6 +106,7 @@ angularTemplate.directives = [
   require('./directives/include'),
   require('./directives/repeat'),
   require('./directives/if'),
+  require('./directives/show'),
   require('./directives/class'),
   require('./directives/bind'),
   require('./directives/style')

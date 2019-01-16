@@ -2,7 +2,6 @@ var tmpl, data, expectedOutput, output;
 var ht = require('../index.js');
 
 describe("ht", () => {
-
   it("expressions", () => {
     /*******************************************************
      * `{{}}` expression test
@@ -62,6 +61,14 @@ describe("ht", () => {
     expect(ht("<div ht-if='x.foo'>YES</div>", { x: { foo: true } })).toEqual("<div>YES</div>");
     expect(ht("<div ht-if='x.bar'>YES</div>", { x: { foo: true } })).toEqual("");
     expect(ht("<div ht-if='!x.bar'>NO</div>", { x: { foo: true } })).toEqual("<div>NO</div>");
+  });
+
+  it("show", () => {
+    /*******************************************************
+     * `ht-show` expression test
+     *******************************************************/
+    expect(ht("<div ht-show='x.foo'>YES</div>", { x: { foo: true } })).toEqual('<div class="ng-show">YES</div>');
+    expect(ht("<div ht-show='x.foo'>YES</div>", { x: { foo: false } })).toEqual('<div class="ng-hide">YES</div>');
   });
 
   it("repeat", () => {
