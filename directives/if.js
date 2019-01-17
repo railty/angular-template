@@ -9,7 +9,7 @@ function IfDirective($, data, options, angularTemplate) {
     var expr = $(this).attr(options.prefix + '-if').trim();
     $(this).before("&lt;% if (" + expr + ") { %&gt;");
     $(this).after("&lt;% } %&gt;");
-    $(this).removeAttr(options.prefix + '-if');
+    if (!options.keepNg) $(this).removeAttr(options.prefix + '-if');
   });
 }
 

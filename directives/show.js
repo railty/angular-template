@@ -11,18 +11,19 @@ function ShowDirective($, data, options, angularTemplate) {
     var classes = ($(this).attr('class') || '').trim();
     if (classes) classes += ' ';
 
-    $(this).removeAttr(options.prefix + '-show');
-
+    if (!options.keepNg) $(this).removeAttr(options.prefix + '-show');
+    //and then clone, not before remove the attribute
     var show = $(this).clone();
-    show.attr('class', classes + 'ng-show');
+    show.attr('class', classes + options.prefix + '-show');
 
-    $(this).attr('class', classes + 'ng-hide');
+    $(this).attr('class', classes + options.prefix + '-hide');
 
     $(this).before("&lt;% if (" + expr + ") { %&gt;");
     $(this).before(show);
     $(this).before("&lt;% } else { %&gt;");
 
     $(this).after("&lt;% } %&gt;");
+
   });
 }
 

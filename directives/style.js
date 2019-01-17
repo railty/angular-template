@@ -12,7 +12,7 @@ function StyleDirective($, data, options, angularTemplate) {
       style += ';';
     }
 
-    $(this).removeAttr(options.prefix + '-style');
+    if (!options.keepNg) $(this).removeAttr(options.prefix + '-style');
     $(this).attr('style', style + '<%=$helpers.generateStyle(' + expr + ')%>');
   });
 }

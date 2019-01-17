@@ -48,8 +48,8 @@ function IncludeDirective($, data, options, angularTemplate) {
     } else {
       $(this).append("&lt;%= $helpers.htIncludeFunc(" + expr + ", data," + context + ") %&gt;");
     }
-    $(this).removeAttr(options.prefix + '-include');
-    $(this).removeAttr(options.prefix + '-include-context');
+    if (!options.keepNg) $(this).removeAttr(options.prefix + '-include');
+    if (!options.keepNg) $(this).removeAttr(options.prefix + '-include-context');
   });
 }
 

@@ -18,7 +18,7 @@ function RepeatDirective($, data, options, angularTemplate) {
     $(this).before(jsTmplStr);
     $(this).after("&lt;% } %&gt;");
 
-    $(this).removeAttr(options.prefix + '-repeat');
+    if (!options.keepNg) $(this).removeAttr(options.prefix + '-repeat');
   });
 }
 

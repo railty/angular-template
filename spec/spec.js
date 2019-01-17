@@ -46,6 +46,8 @@ describe("ht", () => {
       expect(ht("{{value | json:0 }}", { value: { a: 1 } })).toEqual('{"a":1}');
     });
 
+
+
     it('custom', () => {
       ht.pipes.or = function (options, value, param) {
         return value ? value : param;
@@ -54,9 +56,13 @@ describe("ht", () => {
     });
   });
 
+
+
   it("if", () => {
     /*******************************************************
      * `ht-if` expression test
+
+
      *******************************************************/
     expect(ht("<div ht-if='x.foo'>YES</div>", { x: { foo: true } })).toEqual("<div>YES</div>");
     expect(ht("<div ht-if='x.bar'>YES</div>", { x: { foo: true } })).toEqual("");
@@ -67,9 +73,31 @@ describe("ht", () => {
     /*******************************************************
      * `ht-show` expression test
      *******************************************************/
-    expect(ht("<div ht-show='x.foo'>YES</div>", { x: { foo: true } })).toEqual('<div class="ng-show">YES</div>');
-    expect(ht("<div ht-show='x.foo'>YES</div>", { x: { foo: false } })).toEqual('<div class="ng-hide">YES</div>');
+    expect(ht("<div ht-show='x.foo'>YES</div>", { x: { foo: true } }, {prefix: 'ht', keepNg: false})).toEqual('<div class="ht-show">YES</div>');
+    expect(ht("<div ht-show='x.foo'>YES</div>", { x: { foo: false } }, {prefix: 'ht', keepNg: false})).toEqual('<div class="ht-hide">YES</div>');
   });
+
+  it("switch", () => {
+    /*******************************************************
+     * `ht-switch` expression test
+     *******************************************************/
+     var template = `
+       <ANY ng-switch="fruit">
+         <any>info</any>
+         <ANY ng-switch-when="apple">apple</ANY>
+         <ANY ng-switch-when="pear">pear</ANY>
+         <ANY ng-switch-default>other</ANY>
+       </ANY>`;
+    var expectResult = `
+        <any>
+          <any>info</any>
+          <any>other</any>
+        </any>
+        `.replace(/[\n\r\s]+/g, '').trim();
+    var result = ht(template, {fruit: 'apple'}, {prefix: 'ng', keepNg: false}).replace(/[\n\r\s]+/g, '').trim();
+    expect(result).toEqual(expectResult);
+  });
+
 
   it("repeat", () => {
     /*******************************************************

@@ -6,7 +6,8 @@ function BindDirective($, data, options, angularTemplate) {
     binds.each(function (i, elem) {
       var expr = $(this).attr(options.prefix + '-' + type).trim();
       $(this).text('<%=' + expr + ' %>');
-      $(this).removeAttr(options.prefix + '-' + type);
+
+      if (!options.keepNg) $(this).removeAttr(options.prefix + '-' + type);
     });
   });
 }

@@ -12,8 +12,9 @@ function ClassDirective($, data, options, angularTemplate) {
       classes += ' ';
     }
 
-    $(this).removeAttr(options.prefix + '-class');
     $(this).attr('class', classes + '<%=$helpers.generateClassList(' + expr + ')%>');
+
+    if (!options.keepNg) $(this).removeAttr(options.prefix + '-class');
   });
 }
 

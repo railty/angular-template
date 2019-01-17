@@ -80,6 +80,9 @@ var angularTemplate = function (fileOrHtml, data, options, nested) {
     return output;
   } else {
     try {
+      //deal with the else statement, combine 2 lines together
+      output = output.replace(/%>[\n\r\s]+<%\s+else/g, ' else');
+
       return jsTemplate(output, data);
     } catch (e) {
       if (e.raisedOnceException) {
@@ -109,7 +112,10 @@ angularTemplate.directives = [
   require('./directives/show'),
   require('./directives/class'),
   require('./directives/bind'),
-  require('./directives/style')
+  require('./directives/style'),
+  require('./directives/switch'),
+  require('./directives/switch-when'),
+  require('./directives/switch-default'),
 ];
 
 // key/value pairs of supported pipes
