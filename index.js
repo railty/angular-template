@@ -127,7 +127,14 @@ angularTemplate.pipes = {
   json: require('./pipes/json'),
   date: require('./pipes/date'),
   limitTo: require('./pipes/limit-to'),
-  filter: require('./pipes/filter')
+  filter: require('./pipes/filter'),
+
+  checkurlFilter: require('./pipes/checkurlFilter'),
+  emojiFilter: require('./pipes/emojiFilter'),
+  emojiHideFilter: require('./pipes/emojiHideFilter'),
+  HTMLEnCode: require('./pipes/HTMLEnCode'),
+  timeFormat: require('./pipes/timeFormat'),
+  VoiceLengthFilter: require('./pipes/VoiceLengthFilter'),
 };
 
 // all internal helpers will be exposed as well and can be overriden
