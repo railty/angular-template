@@ -60,6 +60,7 @@ var angularTemplate = function (fileOrHtml, data, options, nested) {
     /**
      * curly-braces exprepression
      */
+
     output = $.html()
       .replace(/&lt;%/g, "<%")                       // <%
       .replace(/%&gt;/g, "%>")                        // %>
